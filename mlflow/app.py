@@ -13,8 +13,10 @@ from urllib.parse import urlparse
 import mlflow
 from mlflow.models import infer_signature
 import mlflow.sklearn
-
 import logging
+
+import dagshub
+dagshub.init(repo_owner='HanniKanchap', repo_name='ML', mlflow=True)
 
 logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
@@ -34,7 +36,7 @@ if __name__ == "__main__":
     csv_url = (
         "https://raw.githubusercontent.com/mlflow/mlflow/master/tests/datasets/winequality-red.csv"
     )
-    
+
     try:
         data = pd.read_csv(csv_url, sep=";")
     except Exception as e:
@@ -73,8 +75,7 @@ if __name__ == "__main__":
 
         predictions = lr.predict(train_x)
         signature = infer_signature(train_x,predictions)
-        # remote_server_uri="https://dagshub.com/HanniKanchap/ML_FLOW_Experiment"
-        # mlflow.set_tracking_uri(remote_server_uri)
+
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
         if tracking_url_type_store != "file":

@@ -8,3 +8,4 @@ plotly
 xgboost
 nbformat
 mlflow
+dagshub
