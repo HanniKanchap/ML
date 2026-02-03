@@ -9,3 +9,5 @@ xgboost
 nbformat
 mlflow
 dagshub
+dvc
+bentoml==1.0.25
