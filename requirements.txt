@@ -12,3 +12,4 @@ dagshub
 dvc
 bentoml==1.0.25
 tensorflow
+nltk
